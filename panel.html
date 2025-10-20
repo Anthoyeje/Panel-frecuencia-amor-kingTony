@@ -419,6 +419,7 @@
             min-width: 120px;
             text-align: center;
             font-size: 14px;
+            max-width: 90vw;
         }
 
         #timer.warning {
@@ -458,16 +459,45 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 30px 20px;
+            }
+            
             .images-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
             }
             
             h1 {
                 font-size: 1.8em;
+                letter-spacing: 1px;
+            }
+
+            .subtitle {
+                font-size: 0.9em;
+                letter-spacing: 2px;
+            }
+
+            .upload-title {
+                font-size: 1.1em;
+            }
+
+            .generate-btn {
+                padding: 15px;
+                font-size: 1.1em;
             }
 
             .button-row {
                 flex-direction: column;
+            }
+
+            .copy-btn, .open-btn {
+                padding: 12px;
+                font-size: 0.9em;
             }
 
             #timer, #back-btn {
@@ -477,11 +507,79 @@
             }
 
             #back-btn {
-                left: 15px;
+                left: 10px;
             }
 
             #timer {
-                right: 15px;
+                right: 10px;
+                max-width: 80vw;
+            }
+
+            .upload-section {
+                padding: 20px;
+            }
+
+            .result-section {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+                border-radius: 15px;
+            }
+            
+            .images-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .image-upload-box {
+                aspect-ratio: 1;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .upload-title {
+                font-size: 1em;
+            }
+
+            .loading-text {
+                font-size: 1em;
+            }
+
+            .result-title {
+                font-size: 1em;
+            }
+
+            #timer.warning {
+                font-size: 11px;
+                padding: 6px 10px;
+            }
+
+            #timer.warning br {
+                display: none;
+            }
+
+            #timer.warning::after {
+                content: ' ¡Tiempo por terminar!';
+                font-size: 0.8em;
+                display: block;
+            }
+
+            #back-btn {
+                font-size: 11px;
+                padding: 6px 10px;
+                left: 5px;
+            }
+
+            #timer {
+                right: 5px;
+                font-size: 11px;
+                padding: 6px 10px;
             }
         }
     </style>
@@ -581,7 +679,7 @@
             <div class="link-display" id="linkDisplay"></div>
             <div class="button-row">
                 <button class="copy-btn" id="copyBtn">📋 COPIAR AL PORTAPAPELES</button>
-               
+                <button class="open-btn" id="openBtn">🔗 ABRIR EN NUEVA PESTAÑA</button>
             </div>
         </div>
     </div>
@@ -612,6 +710,8 @@
         const openBtn = document.getElementById('openBtn');
         const baseUrl = "https://anthoyeje.github.io/plantilla-frecuencia-amor/";
 
+        let currentLink = '';
+
         // Timer Logic
         const expiresAt = parseInt(localStorage.getItem('key_expires'));
         const key = localStorage.getItem('current_key');
@@ -630,7 +730,7 @@
             const timerEl = document.getElementById('timer');
             if (remaining < 60) {
                 timerEl.classList.add('warning');
-                timerEl.innerHTML = `Tiempo restante: <span id="time-display">${minutes}:${seconds.toString().padStart(2, '0')}</span><br>Tiempo por terminar!`;
+                timerEl.innerHTML = `Tiempo restante: <span id="time-display">${minutes}:${seconds.toString().padStart(2, '0')}</span>`;
             }
             if (remaining <= 0) {
                 localStorage.removeItem('key_expires');
@@ -712,6 +812,7 @@
             const id = generateRandomId(32);
             await set(ref(db, `ids/${id}`), { images });
             const link = `${baseUrl}?id=${id}`;
+            currentLink = link;
             
             linkDisplay.innerHTML = `<a href="${link}" target="_blank">${link}</a>`;
             loadingSection.style.display = 'none';
@@ -722,8 +823,6 @@
 
         copyBtn.addEventListener('click', copyToClipboard);
         openBtn.addEventListener('click', openLink);
-
-        let currentLink = '';
 
         function generateRandomId(length) {
             const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -747,9 +846,6 @@
         function openLink() {
             window.open(currentLink, '_blank');
         }
-
-        // Update currentLink when link is generated
-        // (set in generateBtn click handler)
     </script>
 </body>
 </html>
