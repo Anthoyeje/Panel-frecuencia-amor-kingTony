@@ -1,0 +1,1046 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Panel de Ingreso — Sorpresa Especial</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg,#0a0a15,#1a0a2e,#0f0f1e);
+      --panel-gradient: linear-gradient(135deg,#0f0f1e,#1a1a3e);
+      --header-gradient: linear-gradient(135deg,#00b366,#00b3cc,#00b366);
+      --text-primary: #d4f1f4;
+      --text-title: #000000;
+      --input-bg: #1a1a3e;
+      --input-border: #00ff88;
+      --input-color: #00ffff;
+      --input-placeholder: #00aa88;
+      --input-focus-border: #00ffff;
+      --btn-main-bg: linear-gradient(135deg,#00ff88,#00ffff);
+      --btn-main-color: #0a0a15;
+      --btn-alt-bg: #1a1a3e;
+      --btn-alt-color: #00ff88;
+      --btn-alt-border: #00ff88;
+      --btn-guide-bg: linear-gradient(135deg,#ff006e,#ff3d7f);
+      --btn-guide-color: #ffffff;
+      --btn-guide-border: #ff006e;
+      --info-card-bg: linear-gradient(135deg,rgba(0,255,150,0.1),rgba(0,255,200,0.08));
+      --info-card-border: rgba(0,255,150,0.5);
+      --info-title-color: #00ffff;
+      --info-text-color: #b3f0f5;
+      --link-color: #ff006e;
+      --link-hover: #00ffff;
+      --toast-bg: #1a1a3e;
+      --toast-color: #00ff88;
+      --toast-border: #00ff88;
+      --overlay-bg: rgba(0,0,0,0.9);
+      --overlay-color: #00ff88;
+      --overlay-title-color: #00ff88;
+      --overlay-mission-color: #b3f0f5;
+      --overlay-btn-bg: linear-gradient(135deg,#00ff88,#00ffff);
+      --overlay-btn-color: #0a0a15;
+      --floating-icon-bg: #1a1a3e;
+      --description-color: #d4f1f4;
+      --glow-green: rgba(0,255,150,0.9);
+      --glow-cyan: rgba(0,255,255,0.6);
+      --glow-magenta: rgba(255,0,110,0.9);
+      --glow-intensity: 0.7;
+    }
+    .night-mode {
+      --bg-gradient: linear-gradient(135deg,#040408,#0c061c,#070812);
+      --panel-gradient: linear-gradient(135deg,#080811,#0c0c17);
+      --header-gradient: linear-gradient(135deg,#005522,#005588,#005522);
+      --text-primary: #98a8ac;
+      --text-title: #000000;
+      --input-bg: #0c0c17;
+      --input-border: #00bb55;
+      --input-color: #00bbbb;
+      --input-placeholder: #007755;
+      --input-focus-border: #00bbbb;
+      --btn-main-bg: linear-gradient(135deg,#00bb55,#00bbbb);
+      --btn-main-color: #040408;
+      --btn-alt-bg: #0c0c17;
+      --btn-alt-color: #00bb55;
+      --btn-alt-border: #00bb55;
+      --btn-guide-bg: linear-gradient(135deg,#bb0044,#bb2b33);
+      --btn-guide-color: #ffffff;
+      --btn-guide-border: #bb0044;
+      --info-card-bg: linear-gradient(135deg,rgba(0,187,85,0.05),rgba(0,187,136,0.04));
+      --info-card-border: rgba(0,187,85,0.2);
+      --info-title-color: #00bbbb;
+      --info-text-color: #70b0b5;
+      --link-color: #bb0044;
+      --link-hover: #00bbbb;
+      --toast-bg: #0c0c17;
+      --toast-color: #00bb55;
+      --toast-border: #00bb55;
+      --overlay-bg: rgba(0,0,0,0.97);
+      --overlay-color: #00bb55;
+      --overlay-title-color: #00bb55;
+      --overlay-mission-color: #70b0b5;
+      --overlay-btn-bg: linear-gradient(135deg,#00bb55,#00bbbb);
+      --overlay-btn-color: #040408;
+      --floating-icon-bg: #0c0c17;
+      --description-color: #98a8ac;
+      --glow-green: rgba(0,187,85,0.3);
+      --glow-cyan: rgba(0,187,187,0.3);
+      --glow-magenta: rgba(187,0,77,0.3);
+      --glow-intensity: 0.3;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Arial',sans-serif;background:var(--bg-gradient);display:flex;justify-content:center;align-items:center;min-height:100vh;padding:40px 20px;color:var(--text-primary);transition: background 0.8s ease-in-out, color 0.8s ease-in-out;}.stage{display:flex;align-items:center;justify-content:center;height:100%;padding:20px;width:100%;transition: all 0.8s ease-in-out;}.panel-1{background:var(--panel-gradient);max-width:500px;width:100%;border-radius:35px;box-shadow:0 50px 100px rgba(0,0,0,0.9),0 0 60px var(--glow-green),0 0 0 1px rgba(0,255,150,0.4);overflow:hidden;transform:perspective(1000px) rotateX(2deg);position:relative;transition: background 0.8s ease-in-out, box-shadow 0.8s ease-in-out;}.header-dots{position:absolute;top:20px;left:20px;display:flex;gap:8px;z-index:100}.dot{width:12px;height:12px;border-radius:50%;cursor:pointer;transition:all 0.3s}.dot-red{background:linear-gradient(135deg,#ff0055,#ff3377);box-shadow:0 0 20px rgba(255,0,85,0.9)}.dot-yellow{background:linear-gradient(135deg,#ffcc00,#ffdd33);box-shadow:0 0 20px rgba(255,200,0,0.9)}.dot-green{background:linear-gradient(135deg,#00dd88,#00ffaa);box-shadow:0 0 20px rgba(0,221,136,0.9)}.dot:hover{transform:scale(1.3);box-shadow:0 0 40px var(--glow-green)}.header-layer{background:var(--header-gradient);background-size:300% 300%;padding:50px 40px 80px;position:relative;clip-path:polygon(0 0,100% 0,100% 85%,0 100%);animation:gradientFlow 8s ease infinite;box-shadow:inset 0 0 30px rgba(0,179,150,0.2);transition: background 0.8s ease-in-out, box-shadow 0.8s ease-in-out;}.floating-icon{width:90px;height:90px;background:var(--floating-icon-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:45px;margin:0 auto 25px;box-shadow:0 0 30px var(--glow-green),0 20px 50px rgba(0,0,0,0.5);transition: background 0.8s ease-in-out, box-shadow 0.8s ease-in-out;}.title{color:var(--text-title);font-size:30px;font-weight:900;text-align:center;text-transform:uppercase;letter-spacing:3px;text-shadow:0 0 10px var(--glow-cyan);transition: color 0.8s ease-in-out, text-shadow 0.8s ease-in-out;}.content-layer{padding:50px 40px 40px;margin-top:-40px;position:relative;transition: all 0.8s ease-in-out;}.description{color:var(--description-color);text-align:center;font-size:14px;line-height:1.9;margin-bottom:35px;font-weight:500;transition: color 0.8s ease-in-out;}.input-elevated{background:#0a0a15;padding:25px;border-radius:20px;margin-bottom:20px;box-shadow:inset 0 2px 10px rgba(0,0,0,0.8),0 0 30px rgba(0,255,150,0.1),0 10px 30px rgba(0,0,0,0.3);background-color: rgba(10,10,21,0.8);transition: background 0.8s ease-in-out, box-shadow 0.8s ease-in-out;}input{width:100%;padding:18px;background:var(--input-bg);border:2px solid var(--input-border);border-radius:12px;color:var(--input-color);font-size:16px;text-align:center;letter-spacing:2px;transition:all 0.4s ease;font-weight:bold}input:focus{outline:none;border-color:var(--input-focus-border);box-shadow:0 0 30px var(--glow-cyan),0 0 60px var(--glow-green),inset 0 0 20px rgba(0,255,150,0.1)}input::placeholder{color:var(--input-placeholder)}.btn-container{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:15px}.btn-guide-full{width:100%;margin-top:10px}button{width:100%;padding:18px;border:none;border-radius:15px;font-size:15px;font-weight:bold;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all 0.3s ease;background:var(--btn-main-bg);color:var(--btn-main-color);box-shadow:0 0 30px var(--glow-green),0 10px 30px rgba(0,255,200,0.4);border:2px solid var(--input-border);font-weight:bold}button:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(0,0,0,0.4)}button:active{transform:translateY(-1px)}.btn-main{background:var(--btn-main-bg);color:var(--btn-main-color);box-shadow:0 0 30px var(--glow-green),0 10px 30px rgba(0,255,200,0.4);border:2px solid var(--input-border);font-weight:bold;transition: background 0.8s ease-in-out, color 0.8s ease-in-out, border-color 0.8s ease-in-out, box-shadow 0.8s ease-in-out;}.btn-main:hover{box-shadow:0 0 50px var(--glow-green),0 0 80px var(--glow-cyan)}.btn-alt{background:var(--btn-alt-bg);color:var(--btn-alt-color);border:2px solid var(--btn-alt-border);transition:all 0.3s;box-shadow:0 0 15px var(--glow-green);font-weight:bold;transition: background 0.8s ease-in-out, color 0.8s ease-in-out, border-color 0.8s ease-in-out, box-shadow 0.8s ease-in-out;}.btn-alt:hover{background:#0f0f2e;border-color:var(--input-focus-border);box-shadow:0 0 30px var(--glow-cyan),0 0 15px var(--glow-green)}.btn-guide{background:var(--btn-guide-bg);color:var(--btn-guide-color);box-shadow:0 0 30px var(--glow-magenta),0 10px 30px rgba(255,100,180,0.4);border:2px solid var(--btn-guide-border);font-weight:bold;transition: background 0.8s ease-in-out, color 0.8s ease-in-out, border-color 0.8s ease-in-out, box-shadow 0.8s ease-in-out;}.btn-guide:hover{box-shadow:0 0 50px var(--glow-magenta),0 0 80px rgba(255,100,200,0.6)}.info-card{background:var(--info-card-bg);padding:25px;border-radius:18px;margin-top:25px;border:2px solid var(--info-card-border);backdrop-filter:blur(10px);box-shadow:0 0 30px var(--glow-green),inset 0 0 20px rgba(0,255,150,0.05);transition: background 0.8s ease-in-out, border-color 0.8s ease-in-out, box-shadow 0.8s ease-in-out;}.info-title{color:var(--info-title-color);font-size:14px;font-weight:bold;margin-bottom:10px;text-shadow:0 0 10px var(--glow-cyan);transition: color 0.8s ease-in-out, text-shadow 0.8s ease-in-out;}.info-text{color:var(--info-text-color);font-size:13px;line-height:1.7;font-weight:500;transition: color 0.8s ease-in-out;}.link{color:var(--link-color);font-weight:bold;text-decoration:none;border-bottom:2px solid var(--link-color);transition:all 0.3s;transition: color 0.8s ease-in-out, border-bottom-color 0.8s ease-in-out;}.link:hover{color:var(--link-hover);border-bottom-color:var(--link-hover)}.hidden{display:none!important}.toast{position:fixed;top:20px;right:20px;background:var(--toast-bg);color:var(--toast-color);padding:12px 20px;border-radius:10px;z-index:1000;opacity:0;transition:opacity 0.3s ease,transform 0.3s ease;transform:translateX(100%);max-width:300px;font-size:14px;box-shadow:0 0 30px var(--glow-green),0 10px 30px rgba(0,0,0,0.5);border:2px solid var(--toast-border);font-weight:bold;transition: background 0.8s ease-in-out, color 0.8s ease-in-out, border-color 0.8s ease-in-out, box-shadow 0.8s ease-in-out;}.toast.show{opacity:1;transform:translateX(0)}.toast.error{background:var(--toast-bg);border-color:#ff006e;color:#ff006e;box-shadow:0 0 30px rgba(255,0,110,0.6)}.toast.success{background:var(--toast-bg);border-color:var(--input-border);color:var(--toast-color);box-shadow:0 0 30px var(--glow-green)}@media (max-width:768px){body{padding:15px}.stage{padding:10px}.panel-1{max-width:100%;border-radius:25px}.header-layer{padding:35px 25px 55px}.floating-icon{width:70px;height:70px;font-size:35px}.title{font-size:20px}.content-layer{padding:35px 25px 25px}.description{font-size:13px}.input-elevated{padding:20px}input{padding:16px;font-size:15px}button{padding:16px;font-size:14px}.btn-container{grid-template-columns:1fr}.info-card{padding:20px}.toast{right:10px;left:10px;top:10px}.header-dots{top:15px;left:15px;gap:6px}.dot{width:10px;height:10px}}#overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--overlay-bg);display:flex;justify-content:center;align-items:center;z-index:1001;flex-direction:column;color:var(--overlay-color);text-align:center;padding:20px;transition: background 0.8s ease-in-out, color 0.8s ease-in-out;}.overlay-title{font-size:24px;margin-bottom:20px;font-weight:bold;text-shadow:0 0 20px var(--glow-green);color:var(--overlay-title-color);transition: color 0.8s ease-in-out, text-shadow 0.8s ease-in-out;}.overlay-mission{font-size:18px;margin-bottom:20px;color:var(--overlay-mission-color);transition: color 0.8s ease-in-out;}.overlay-btn{margin:10px 0;padding:15px 30px;background:var(--overlay-btn-bg);color:var(--overlay-btn-color);border:2px solid var(--input-border);border-radius:10px;cursor:pointer;font-size:16px;transition:all 0.3s ease;font-weight:bold;box-shadow:0 0 30px var(--glow-green);transition: background 0.8s ease-in-out, color 0.8s ease-in-out, border-color 0.8s ease-in-out, box-shadow 0.8s ease-in-out;}.overlay-btn:hover{transform:scale(1.05);box-shadow:0 0 50px var(--glow-green),0 0 80px var(--glow-cyan)}.overlay-btn:active{background:linear-gradient(135deg,#ff006e,#ff3d7f);color:white;transform:scale(0.98)}#btnViewKeys{animation:glow 1.5s infinite alternate}@keyframes glow{from{box-shadow:0 0 30px var(--glow-green)}to{box-shadow:0 0 50px var(--glow-green),0 0 80px var(--glow-cyan)}}.wrapper{position:relative}.floating-label{position:absolute;top:-70px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,rgba(0,255,136,0.95),rgba(0,255,200,0.9));color:#0a0a15;padding:12px 20px;border-radius:25px;font-size:13px;font-weight:bold;white-space:nowrap;box-shadow:0 0 30px var(--glow-green),0 0 60px var(--glow-cyan);backdrop-filter:blur(15px);border:2px solid rgba(0,255,200,0.8);animation:float-tooltip 3s ease-in-out infinite;pointer-events:none;z-index:10;transition: background 0.8s ease-in-out, box-shadow 0.8s ease-in-out;}.floating-label::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid rgba(0,255,136,0.95);filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))}@keyframes float-tooltip{0%,100%{transform:translateX(-50%) translateY(0px);opacity:0.7}50%{transform:translateX(-50%) translateY(-20px);opacity:1}}.btn-soft-beat{width:100%;height:50px;border:3px solid #ff006e;border-radius:15px;background:transparent;cursor:pointer;animation:soft-beat 2s ease-in-out infinite;box-shadow:0 0 30px var(--glow-magenta);transition:all 0.3s;display:flex;justify-content:center;align-items:center;font-size:16px;font-weight:bold;color:#ff006e;margin-top:10px;transition: border-color 0.8s ease-in-out, box-shadow 0.8s ease-in-out, color 0.8s ease-in-out;}.btn-soft-beat:hover{transform:scale(1.05);box-shadow:0 0 50px var(--glow-magenta)}.btn-soft-beat:active{transform:scale(0.98)}@keyframes soft-beat{0%{transform:scale(1);box-shadow:0 0 30px var(--glow-magenta)}50%{transform:scale(1.05);box-shadow:0 0 50px var(--glow-magenta)}100%{transform:scale(1);box-shadow:0 0 30px var(--glow-magenta)}}@keyframes gradientFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    /* Toggle Button Styles - Smaller Size */
+    .toggle-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+    }
+    .toggle-button {
+      width: 6em;
+      height: 2.5em;
+      box-shadow: 0.075em 0.075em 0.225em 0.1em #ffffffee;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      border-radius: 6em;
+      cursor: pointer;
+    }
+    .toggle-button::before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      box-shadow: inset 0.15em 0.15em 0.5em 0.05em #000000bb;
+      position: absolute;
+      z-index: 1;
+      border-radius: 6em;
+      pointer-events: none;
+    }
+    .light, .dark {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    .content {
+      width: 100%;
+      height: 100%;
+      background-color: #2e83bf;
+      position: relative;
+      isolation: isolate;
+      transition: all 1s ease;
+    }
+    #dark:target {
+      pointer-events: none;
+    }
+    #light:target {
+      pointer-events: none;
+    }
+    #dark:target ~ .content {
+      background-color: #1f2234;
+    }
+    #light:target ~ .content {
+      background-color: #2e83bf;
+    }
+    .satallite {
+      width: 1.8em;
+      height: 1.8em;
+      position: absolute;
+      top: 7.5%;
+      left: 5%;
+      border-radius: 50%;
+      isolation: isolate;
+      z-index: 1;
+      transition: all 1s ease;
+    }
+    #dark:target ~ .content > .satallite {
+      left: 65%;
+    }
+    #light:target ~ .content > .satallite {
+      left: 5%;
+    }
+    .satallite::before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      box-shadow:
+        inset 0.1em 0.1em 0.15em #ffffff88,
+        -0.1em -0.1em 0.15em #ffffff88,
+        inset -0.1em -0.1em 0.15em #00000066,
+        0.1em 0.1em 0.15em #00000066,
+        0.075em 0.075em 0.5em 0.2em #00000039;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      z-index: 2;
+    }
+    .sun {
+      width: 100%;
+      height: 100%;
+      background-color: #fbc72d;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border-radius: 50%;
+    }
+    .moon {
+      width: 100%;
+      height: 100%;
+      background-color: #cccfd9;
+      box-shadow:
+        inset 0.1em 0.1em 0.15em #ffffff88,
+        -0.1em -0.1em 0.15em #ffffff88,
+        inset -0.1em -0.1em 0.15em #00000066,
+        0.1em 0.1em 0.15em #00000066,
+        0.075em 0.075em 0.5em 0.2em #00000039;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      transform: rotate(60deg);
+      border-radius: 50%;
+      transition: all 1s ease;
+    }
+    #dark:target ~ .content .moon {
+      left: 0%;
+      transform: rotate(0deg);
+    }
+    #light:target ~ .content .moon {
+      left: 100%;
+      transform: rotate(60deg);
+    }
+    .dot {
+      width: 18%;
+      height: 18%;
+      background-color: #9da8bc;
+      position: absolute;
+      border-radius: 50%;
+    }
+    .dot1 {
+      top: 20%;
+      left: 45%;
+    }
+    .dot2 {
+      top: 50%;
+      left: 25%;
+      transform: scale(2);
+    }
+    .dot3 {
+      top: 60%;
+      left: 62%;
+      transform: scale(1.2);
+    }
+    .rays {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: scale(1);
+      transition: all 1s ease;
+    }
+    #dark:target ~ .content .rays {
+      transform: scale(0.85);
+    }
+    #light:target ~ .content .rays {
+      transform: scale(1);
+    }
+    .ray {
+      width: 100%;
+      height: 100%;
+      background-color: #ffffff1a;
+      backdrop-filter: blur(0.0075em);
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+    }
+    .ray1 {
+      transform: scale(2);
+    }
+    .ray2 {
+      transform: scale(2.9);
+    }
+    .ray3 {
+      transform: scale(3.8);
+    }
+    .stars {
+      width: 70%;
+      height: 100%;
+      position: absolute;
+      top: -100%;
+      transition: all 1s ease;
+    }
+    #dark:target ~ .content .stars {
+      top: 0%;
+    }
+    #light:target ~ .content .stars {
+      top: -100%;
+    }
+    .star {
+      width: 0.5em;
+      height: 0.5em;
+      background-color: #f8fcff;
+      -webkit-clip-path: polygon(50% 0, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0 50%, 35% 35%);
+      clip-path: polygon(50% 0, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0 50%, 35% 35%);
+      position: absolute;
+    }
+    .star1 {
+      top: 12%;
+      left: 25%;
+    }
+    .star2 {
+      top: 30%;
+      left: 10%;
+      transform: scale(0.4);
+    }
+    .star3 {
+      top: 35%;
+      left: 60%;
+      transform: scale(0.3);
+    }
+    .star4 {
+      top: 25%;
+      left: 77.5%;
+      transform: scale(1.1);
+    }
+    .star5 {
+      top: 45%;
+      left: 27.5%;
+      transform: scale(0.3);
+    }
+    .star6 {
+      top: 50%;
+      left: 58.5%;
+      transform: scale(0.2);
+    }
+    .star7 {
+      top: 55%;
+      left: 77.5%;
+      transform: scale(0.3);
+    }
+    .star8 {
+      top: 65%;
+      left: 18%;
+      transform: scale(0.2);
+    }
+    .star9 {
+      top: 72.5%;
+      left: 15%;
+      transform: scale(0.2);
+    }
+    .star10 {
+      top: 80%;
+      left: 30%;
+      transform: scale(0.24);
+    }
+    .star11 {
+      top: 75%;
+      left: 62.5%;
+      transform: scale(0.5);
+    }
+    .clouds {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      isolation: isolate;
+      transition: all 1s ease;
+    }
+    #dark:target ~ .content .clouds {
+      top: 100%;
+    }
+    #light:target ~ .content .clouds {
+      top: 0;
+    }
+    .cloudset {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      bottom: -15%;
+      right: -10%;
+    }
+    .cloud {
+      width: 1.3em;
+      height: 1.3em;
+      background-color: #f5faff;
+      position: absolute;
+      bottom: -24%;
+      transform: scale(1);
+      border-radius: 50%;
+    }
+    .cloud2 {
+      bottom: -20%;
+      left: 14%;
+      transform: scale(1.3);
+    }
+    .cloud3 {
+      bottom: -15%;
+      left: 27.5%;
+      transform: scale(1.3);
+    }
+    .cloud4 {
+      bottom: -12%;
+      left: 40%;
+      transform: scale(0.9);
+    }
+    .cloud5 {
+      bottom: -7.5%;
+      left: 52.5%;
+      transform: scale(1.1);
+    }
+    .cloud6 {
+      bottom: 0%;
+      left: 67.5%;
+      transform: scale(1.3);
+    }
+    .cloud7 {
+      bottom: 25%;
+      left: 80%;
+      transform: scale(1.55);
+    }
+    .cloudset1 {
+      z-index: 1;
+    }
+    .cloudset2 {
+      bottom: 0%;
+      right: -6%;
+      transform: rotate(-5deg);
+    }
+    .cloudset2 .cloud {
+      background-color: #a7cbea;
+    }
+    .cloudset2 .cloud2 {
+      bottom: -18%;
+      left: 15%;
+    }
+    .cloudset2 .cloud3 {
+      bottom: -7.5%;
+      left: 29%;
+    }
+    .cloudset2 .cloud5 {
+      bottom: -1%;
+    }
+    .cloudset2 .cloud6 {
+      bottom: 4%;
+    }
+    @media (max-width:768px) {
+      .toggle-container {
+        top: 15px;
+        right: 15px;
+      }
+      .toggle-button {
+        width: 5em;
+        height: 2em;
+      }
+      .satallite {
+        width: 1.5em;
+        height: 1.5em;
+      }
+      .star {
+        width: 0.4em;
+        height: 0.4em;
+      }
+      .cloud {
+        width: 1.1em;
+        height: 1.1em;
+      }
+    }
+
+    /* Back Button Styles - Small Corner Button */
+    #back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: var(--btn-guide-bg);
+      color: var(--btn-guide-color);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px var(--glow-magenta);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      width: auto;
+      min-width: auto;
+    }
+
+    #back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px var(--glow-magenta);
+    }
+
+    #back-btn:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      #back-btn {
+        top: 15px;
+        left: 15px;
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toast" id="toast"></div>
+
+  <!-- Back to Previous Page Button -->
+  <button id="back-btn">← Volver</button>
+
+  <div class="toggle-container">
+    <div class="toggle-button">
+      <div id="light">
+        <a href="#light" class="light"></a>
+      </div>
+      <div id="dark">
+        <a href="#dark" class="dark"></a>
+      </div>
+      <div class="content">
+        <div class="satallite">
+          <div class="sun">
+            <div class="moon">
+              <div class="dot dot1"></div>
+              <div class="dot dot2"></div>
+              <div class="dot dot3"></div>
+            </div>
+          </div>
+          <div class="rays">
+            <div class="ray ray1"></div>
+            <div class="ray ray2"></div>
+            <div class="ray ray3"></div>
+          </div>
+        </div>
+        <div class="clouds">
+          <div class="cloudset cloudset1">
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+            <div class="cloud cloud3"></div>
+            <div class="cloud cloud4"></div>
+            <div class="cloud cloud5"></div>
+            <div class="cloud cloud6"></div>
+            <div class="cloud cloud7"></div>
+          </div>
+          <div class="cloudset cloudset2">
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+            <div class="cloud cloud3"></div>
+            <div class="cloud cloud4"></div>
+            <div class="cloud cloud5"></div>
+            <div class="cloud cloud6"></div>
+            <div class="cloud cloud7"></div>
+          </div>
+        </div>
+        <div class="stars">
+          <div class="star star1"></div>
+          <div class="star star2"></div>
+          <div class="star star3"></div>
+          <div class="star star4"></div>
+          <div class="star star5"></div>
+          <div class="star star6"></div>
+          <div class="star star7"></div>
+          <div class="star star8"></div>
+          <div class="star star9"></div>
+          <div class="star star10"></div>
+          <div class="star star11"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay">
+    <div class="overlay-title">🔒 Acceso exclusivo para seguidores</div>
+    <div class="overlay-mission">Esta página es totalmente gratis, pero solo está disponible para quienes me siguen en TikTok 💜<br><br>🚀 Misión para desbloquear el acceso:<br>✅ Paso 1: Sígueme en TikTok<br>✅ Paso 2: Haz clic en el botón de abajo para continuar</div>
+    <button class="overlay-btn" id="btnTikTok">🔗 Abrir perfil del creador</button>
+    <p style="font-size:14px;margin-top:10px;color:var(--overlay-mission-color)">(Una vez que me sigas, el acceso se desbloqueará automáticamente)</p>
+  </div>
+
+  <div class="stage">
+    <div id="keyPanel" class="panel-1">
+        <div class="header-dots">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+        </div>
+        <div class="header-layer">
+            <div class="floating-icon">🔑</div>
+            <h2 class="title">king Tony ʜxᴘ 👑 Registro</h2>
+        </div>
+        <div class="content-layer">
+            <p class="description">
+                "Accede al Panel de Creación"<br>
+                Ingresa tu Key para activar el acceso temporal al Panel generador de ling. Solo podras ser dueño del key si el key es nuevo.
+            </p>
+            <div class="input-elevated">
+                <input id="inputId" type="text" maxlength="10" placeholder="TU KEY AQUÍ" autofocus inputmode="numeric" />
+            </div>
+            <div class="btn-container">
+                <button class="btn-main" id="btnCheck">Ingresar</button>
+                <button class="btn-alt" id="btnPaste">Pegar</button>
+            </div>
+            <div class="btn-guide-full">
+                <button class="btn-guide" id="btnGuide">📖 Leer Como funcionan los Keys</button>
+            </div>
+            <div id="result" class="small" style="text-align:center;color:var(--input-border);margin-top:15px;font-weight:bold;text-shadow:0 0 10px var(--glow-green)"></div>
+            <div class="info-card">
+                <div class="info-title">🎁 Solo para seguidores: Pide tu Key gratis</div>
+                <p class="info-text">
+                   Si no hay mas key disponibles, entonces mande captura a mi whatsapp para demostrar de que eres seguidor en mi TikTok y te  dare tu key gratis: 
+                 
+                </p>
+                <div class="wrapper">
+                    <span class="floating-label">Keys gratis aquí</span>
+                    <button class="btn-soft-beat" onclick="window.open('https://anthoyeje.github.io/panel-visual-de-key-whatsapp/')">🔑 Keys gratis aqui</button>
+                    
+                </div>
+            </div>
+             <a href="https://vm.tiktok.com/ZSHWvWoSgPaGx-5S0k5/" class="link" target="_blank"> tiktok - king Tony</a><br>
+        </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js';
+    import { getDatabase, ref, get, update, remove } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js';
+
+    const firebaseConfigIds = {
+      apiKey: "AIzaSyB9kbDK6wUektIHlBdo_mJZ-4aO4fFP60o",
+      authDomain: "generador-de-id.firebaseapp.com",
+      databaseURL: "https://generador-de-id-default-rtdb.firebaseio.com",
+      projectId: "generador-de-id",
+      storageBucket: "generador-de-id.firebasestorage.app",
+      messagingSenderId: "358107065551",
+      appId: "1:358107065551:web:2e0843695fbb3b248f1bba",
+      measurementId: "G-3HF99LQJBZ"
+    };
+
+    const appIds = initializeApp(firebaseConfigIds, 'idsApp');
+    const dbIds = getDatabase(appIds);
+
+    const inputId = document.getElementById('inputId');
+    const btnCheck = document.getElementById('btnCheck');
+    const btnPaste = document.getElementById('btnPaste');
+    const btnGuide = document.getElementById('btnGuide');
+    const result = document.getElementById('result');
+    const toastEl = document.getElementById('toast');
+    const overlay = document.getElementById('overlay');
+    const btnTikTok = document.getElementById('btnTikTok');
+    const infoCard = document.querySelector('.info-card');
+    const body = document.body;
+    const toggleLinks = document.querySelectorAll('.light a, .dark a');
+
+    // Back Button
+    const backBtn = document.getElementById('back-btn');
+    backBtn.addEventListener('click', () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        // Fallback if no history
+        window.close();
+      }
+    });
+
+    // Theme management
+    let autoMode = localStorage.getItem('autoMode') !== 'false';
+    let pressTimer;
+    let isLongPress = false;
+
+    function getCurrentHour() {
+      return new Date().getHours();
+    }
+
+    function isNightTime() {
+      const hour = getCurrentHour();
+      return hour >= 20 || hour < 7;
+    }
+
+    function setNightMode(night) {
+      if (night) {
+        body.classList.add('night-mode');
+        location.hash = '#dark';
+        localStorage.setItem('nightMode', 'true');
+      } else {
+        body.classList.remove('night-mode');
+        location.hash = '#light';
+        localStorage.setItem('nightMode', 'false');
+      }
+    }
+
+    function toggleTheme() {
+      const night = !body.classList.contains('night-mode');
+      setNightMode(night);
+      localStorage.setItem('autoMode', 'false');
+      showToast(`Modo ${night ? 'noche' : 'día'} activado`, 'success');
+    }
+
+    function toggleAutoMode() {
+      autoMode = !autoMode;
+      localStorage.setItem('autoMode', autoMode.toString());
+      if (autoMode) {
+        setNightMode(isNightTime());
+        showToast('Modo automático activado', 'success');
+      } else {
+        showToast('Modo automático desactivado', 'success');
+      }
+    }
+
+    function initTheme() {
+      const savedNight = localStorage.getItem('nightMode') === 'true';
+      if (autoMode) {
+        setNightMode(isNightTime());
+      } else if (savedNight !== null) {
+        setNightMode(savedNight);
+      } else {
+        setNightMode(false); // Default day
+      }
+    }
+
+    // Toggle events - click for theme, long press for auto
+    function handlePressStart(e) {
+      e.preventDefault();
+      pressTimer = setTimeout(() => {
+        isLongPress = true;
+        toggleAutoMode();
+      }, 500);
+    }
+
+    function handlePressEnd(e) {
+      e.preventDefault();
+      clearTimeout(pressTimer);
+      if (!isLongPress) {
+        toggleTheme();
+      }
+      isLongPress = false;
+    }
+
+    toggleLinks.forEach(link => {
+      ['mousedown', 'touchstart'].forEach(ev => link.addEventListener(ev, handlePressStart));
+      ['mouseup', 'touchend'].forEach(ev => link.addEventListener(ev, handlePressEnd));
+      link.addEventListener('contextmenu', e => e.preventDefault());
+    });
+
+    // Hash change listener to sync visual with class
+    window.addEventListener('hashchange', () => {
+      const isDark = location.hash === '#dark';
+      setNightMode(isDark);
+    });
+
+    // Abrir guía en nueva pestaña
+    btnGuide.addEventListener('click', () => {
+      window.open('https://anthoyeje.github.io/guia-leectura-key/', '_blank');
+    });
+
+    function showToast(message, type = 'error') {
+      toastEl.textContent = message;
+      toastEl.className = `toast ${type}`;
+      toastEl.classList.add('show');
+      setTimeout(() => {
+        toastEl.classList.remove('show');
+      }, 4000);
+    }
+
+    function readCookie(name){ 
+      const parts = document.cookie.split(';').map(s=>s.trim()); 
+      for(const p of parts){ 
+        if(p.startsWith(name+'=')) return p.split('=')[1]; 
+      } 
+      return null; 
+    }
+    
+    function setCookie(name,value,expiresMs){ 
+      const d = new Date(Date.now()+expiresMs); 
+      document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/;SameSite=None;Secure`; 
+    }
+    
+    function delCookie(name){ 
+      document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'; 
+    }
+
+    // Manejo del overlay y cookie
+    const unlockCookieName = 'tiktok_follow_unlock';
+    const unlockDuration = 48 * 60 * 60 * 1000; // 48 horas en ms
+
+    function checkUnlockCookie() {
+      const cookie = readCookie(unlockCookieName);
+      if (cookie) {
+        overlay.style.display = 'none';
+      } else {
+        overlay.style.display = 'flex';
+      }
+    }
+
+    btnTikTok.addEventListener('click', () => {
+      window.open('https://vm.tiktok.com/ZSHWvWoSgPaGx-5S0k5/', '_blank');
+      setCookie(unlockCookieName, 'unlocked', unlockDuration);
+      overlay.style.display = 'none';
+    });
+
+    // Scroll suave al info-card al cargar si no hay overlay
+    window.addEventListener('load', () => {
+      checkUnlockCookie();
+      initTheme();
+      if (overlay.style.display === 'none' && infoCard) {
+        infoCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    function detectTypeFromPattern(id){ 
+      if(!/^\d{10}$/.test(id)) return null; 
+      const a = id.split('').map(d=>parseInt(d,10)); 
+      const prefix = id.slice(0,2); 
+      if(prefix === '01' && a[8] === a[0]) return 1;
+      if(prefix === '02'){ 
+        if(a[9] === a[0]) return 120; 
+        else if(a[8] === a[0]) return 2; 
+      }
+      if(prefix === '10' && a[8] === a[0]) return 10;
+      if(prefix === '24' && a[4] === a[7]) return 1440;
+      if(prefix === '48' && a[2] === a[5] && a[2] === a[8]) return 2880;
+      return null; 
+    }
+    
+    function makeCookieSecret(){ 
+      const arr = new Uint8Array(16); 
+      crypto.getRandomValues(arr); 
+      return Array.from(arr).map(b=>b.toString(16).padStart(2,'0')).join(''); 
+    }
+
+    function getDeviceFingerprint() {
+      console.log('DEBUG: Obteniendo fingerprint del dispositivo...');
+      return {
+        userAgent: navigator.userAgent || 'unknown',
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'unknown',
+        language: navigator.language || 'unknown',
+        screenRes: `${screen.width}x${screen.height}` || 'unknown',
+        platform: navigator.platform || 'unknown'
+      };
+    }
+
+    function calculateValidationScore(data, currentFingerprint) {
+      console.log('DEBUG: Calculando score de validación... Data from DB:', data.activatorMeta ? 'Existe' : 'No existe');
+      const cookie = readCookie('genid_secret_' + inputId.value.trim());
+      let score = 0;
+      let reasons = [];
+      let matchedFactors = 0;
+
+      console.log('DEBUG: Chequeando cookie...', { cookieExists: !!cookie, matches: cookie === data.cookieSecret });
+      if (cookie && cookie === data.cookieSecret) {
+        score += 20;
+        matchedFactors++;
+        reasons.push('Cookie match');
+      } else {
+        reasons.push('Cookie no match');
+      }
+
+      console.log('DEBUG: Chequeando userAgent...', { saved: data.activatorMeta?.userAgent, current: currentFingerprint.userAgent });
+      if (data.activatorMeta && data.activatorMeta.userAgent === currentFingerprint.userAgent) {
+        score += 20;
+        matchedFactors++;
+        reasons.push('UserAgent match');
+      } else {
+        reasons.push('UserAgent no match');
+      }
+
+      console.log('DEBUG: Chequeando timezone...', { saved: data.activatorMeta?.timezone, current: currentFingerprint.timezone });
+      if (data.activatorMeta && data.activatorMeta.timezone === currentFingerprint.timezone) {
+        score += 20;
+        matchedFactors++;
+        reasons.push('Timezone match');
+      } else {
+        reasons.push('Timezone no match');
+      }
+
+      console.log('DEBUG: Chequeando language...', { saved: data.activatorMeta?.language, current: currentFingerprint.language });
+      if (data.activatorMeta && data.activatorMeta.language === currentFingerprint.language) {
+        score += 20;
+        matchedFactors++;
+        reasons.push('Language match');
+      } else {
+        reasons.push('Language no match');
+      }
+
+      const savedRes = data.activatorMeta?.screenRes;
+      const savedPlat = data.activatorMeta?.platform;
+      const currentRes = currentFingerprint.screenRes;
+      const currentPlat = currentFingerprint.platform;
+      console.log('DEBUG: Chequeando screen/platform...', { savedRes, savedPlat, currentRes, currentPlat });
+      if ((savedRes === currentRes || savedPlat === currentPlat) && data.activatorMeta) {
+        score += 20;
+        matchedFactors++;
+        reasons.push('Screen/platform match');
+      } else {
+        reasons.push('Screen/platform no match');
+      }
+
+      const percentage = Math.round(score);
+      console.log('DEBUG FINAL: Score calculado', { score, percentage, matchedFactors, totalFactors: 5, reasons, valid: percentage >= 60 ? 'VALIDO' : 'INVÁLIDO' });
+
+      return { score, percentage, isValid: percentage >= 60, reasons, matchedFactors };
+    }
+
+    async function cleanupExpired(){
+      console.log('DEBUG: Iniciando cleanup expired...');
+      try{
+        const snap = await get(ref(dbIds,'ids'));
+        console.log('DEBUG: Cleanup - Snap exists?', snap.exists());
+        if(!snap.exists()) return;
+        const all = snap.val();
+        const now = Date.now();
+        const removes = [];
+        for(const [k,v] of Object.entries(all)){
+          if(v.expiresAt && v.expiresAt <= now){ removes.push(k);} 
+        }
+        await Promise.all(removes.map(k=>remove(ref(dbIds,'ids/'+k))));
+        if(removes.length) console.log('Limpieza (ingreso):',removes);
+      }catch(e){
+        console.warn('Cleanup failed:', e);
+      }
+    }
+
+    btnPaste.addEventListener('click', async () => { 
+      try {
+        const clipboardText = await navigator.clipboard.readText();
+        const trimmedText = clipboardText.trim();
+        if (/^\d{10}$/.test(trimmedText)) {
+          inputId.value = trimmedText;
+          inputId.focus();
+          result.textContent = '';
+          showToast('Key pegado correctamente ✅', 'success');
+        } else {
+          showToast('El contenido copiado no es un key válido (debe ser 10 dígitos numéricos).', 'error');
+        }
+      } catch (err) {
+        console.error('Error al pegar del portapapeles:', err);
+        showToast('Error al acceder al portapapeles. Intenta pegar manualmente (Ctrl+V).', 'error');
+      }
+    });
+
+    btnCheck.addEventListener('click', async ()=>{
+      console.log('DEBUG: Click en Ingresar - Iniciando verificación');
+      result.textContent = 'Verificando...';
+      try {
+        await cleanupExpired();
+        console.log('DEBUG: Cleanup completado');
+      } catch (cleanupErr) {
+        console.error('DEBUG: Error en cleanup:', cleanupErr);
+      }
+
+      const id = (inputId.value||'').trim();
+      console.log('DEBUG: ID del key:', id);
+      const type = detectTypeFromPattern(id);
+      if(!type){ 
+        console.log('DEBUG: Tipo inválido');
+        result.textContent = '';
+        showToast('Key no válido.', 'error');
+        return; 
+      }
+      console.log('DEBUG: Tipo detectado:', type);
+
+      try{
+        console.log('DEBUG: Consultando DB para key...');
+        const snap = await get(ref(dbIds,'ids/'+id));
+        console.log('DEBUG: Snap obtenido, exists?', snap.exists());
+        if(!snap.exists()){
+          result.textContent = '';
+          showToast('Key expirado, pide uno nuevo al creador.', 'error');
+          return;
+        }
+
+        const data = snap.val();
+        console.log('DEBUG: Data del key:', { hasExpires: !!data.expiresAt, hasSecret: !!data.cookieSecret, hasMeta: !!data.activatorMeta });
+        if(data.expiresAt && data.cookieSecret){
+          if(data.expiresAt <= Date.now()){ 
+            console.log('DEBUG: Key expirada');
+            await remove(ref(dbIds,'ids/'+id)); 
+            result.textContent = '';
+            showToast('Key expirado, pide uno nuevo al creador.', 'error');
+            return; 
+          }
+
+          console.log('DEBUG: Obteniendo fingerprint...');
+          const currentFingerprint = getDeviceFingerprint();
+          const { percentage, isValid, reasons, matchedFactors } = calculateValidationScore(data, currentFingerprint);
+
+          console.log('DEBUG: Validación completada, isValid?', isValid);
+
+          if (isValid) {
+            let currentExpiresAt = data.expiresAt;
+            const cookie = readCookie('genid_secret_' + id);
+            console.log('DEBUG: Chequeando si regenerar cookie...', { cookieExists: !!cookie });
+            if (!cookie) {
+              try {
+                const newCookieSecret = makeCookieSecret();
+                const extraTime = 5 * 60000;
+                currentExpiresAt = data.expiresAt + extraTime;
+                console.log('DEBUG: Regenerando cookie y extendiendo tiempo...');
+                await update(ref(dbIds,'ids/'+id), { cookieSecret: newCookieSecret, expiresAt: currentExpiresAt });
+                setCookie('genid_secret_' + id, newCookieSecret, currentExpiresAt - Date.now());
+                showToast('Key correcto, acceso permitido ✅', 'success');
+              } catch (regErr) {
+                console.error('DEBUG: Error al regenerar cookie:', regErr);
+                showToast('Acceso permitido ✅', 'success');
+              }
+            } else {
+              showToast('Key correcto, acceso permitido ✅', 'success');
+            }
+            localStorage.setItem('key_expires', currentExpiresAt.toString());
+            localStorage.setItem('current_key', id);
+            window.location.href = 'panel.html';
+            return; 
+          }
+          else{ 
+            console.log('DEBUG: Validación fallida');
+            result.textContent = '';
+            showToast('Key en uso por otro dispositivo, pide uno nuevo.', 'error');
+            return; 
+          }
+        }
+
+        console.log('DEBUG: Activando key nuevo...');
+        const currentFingerprint = getDeviceFingerprint();
+        const cookieSecret = makeCookieSecret();
+        const durationMs = (data.type || type) * 60000;
+        const now = Date.now();
+        const expiresAt = now + durationMs;
+        await update(ref(dbIds,'ids/'+id), { 
+          cookieSecret, 
+          expiresAt, 
+          activatedAt: now, 
+          activatorMeta: { 
+            userAgent: currentFingerprint.userAgent,
+            timezone: currentFingerprint.timezone,
+            language: currentFingerprint.language,
+            screenRes: currentFingerprint.screenRes,
+            platform: currentFingerprint.platform
+          }
+        });
+        setCookie('genid_secret_'+id, cookieSecret, durationMs);
+        console.log('DEBUG: Activación completada');
+        result.textContent = '';
+        showToast('Key nuevo verificado con éxito. Acceso permitido ✅', 'success');
+        localStorage.setItem('key_expires', expiresAt.toString());
+        localStorage.setItem('current_key', id);
+        window.location.href = 'panel.html';
+
+      }catch(e){ 
+        console.error('DEBUG ERROR DETALLADO: Error en verificación principal:', e);
+        result.textContent = '';
+        showToast('Error al verificar la key. Contacta al creador.', 'error');
+      }
+    });
+
+    cleanupExpired();
+  </script>
+</body>
+</html>
